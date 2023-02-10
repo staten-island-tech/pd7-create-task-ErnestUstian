@@ -10,3 +10,20 @@ body,
   text-align: center;
   font-size: 30px;
 }
+.query{
+  display: flex;
+  justify-content: center;
+}
+.input-box{
+  width: 200px;
+  height: 30px;
+  font-size: 25px;
+  margin: auto;
+}
+.submit-button{
+  margin: auto;
+  margin-top: 10px;
+  width: 100px;
+  height: 15px;
+  font-size: 10px;
+}
