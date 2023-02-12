@@ -1,6 +1,8 @@
-fetch("https://countryflagsapi.com/:filetype/:code").then(response => {
-    response.json().then(data => {
-        food = data.results
-        display(food)
-    })
-})
+import { DOM } from "./DOM";
+
+fetch("").then((response) => {
+  response.json().then((data) => {
+    food = data.results;
+    display(food);
+  });
+});
