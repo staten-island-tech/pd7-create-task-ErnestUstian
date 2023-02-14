@@ -1,8 +1,11 @@
-import { DOM } from "./DOM";
+import {DOM} from "./DOM"
+var flag = undefined
 
-fetch("https://restcountries.com/v3.1/all").then((response) => {
-  response.json().then((data) => {
-    food = data.results;
-    display(food);
-  });
-});
+async function displayFlag() {
+  let response = await fetch("https://restcountries.com/v3.1/all")
+  let flags = await response.json()
+  let index = Math.floor(Math.random()*flags.length)
+  console.log(flags[index])
+}
+
+displayFlag()
