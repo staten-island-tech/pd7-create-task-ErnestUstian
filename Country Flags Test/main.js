@@ -1,5 +1,5 @@
-import {DOM} from "./DOM"
-var flag = undefined
+import {DOM}from "./DOM"
+let flag = undefined
 
 async function getFlag() {
   let response = await fetch("https://restcountries.com/v3.1/all")
@@ -10,7 +10,6 @@ async function getFlag() {
 
 function display(flags) {
   DOM.body.innerHTML = "";
- flags.forEach((flags) =>
     DOM.insertAdjacentHTML(
       "beforeend",
       `
@@ -18,8 +17,7 @@ function display(flags) {
         <img src="${flags.flag}" alt="image of ${flag.flag}">
     </div>
     `
-    )
-  );
+    );
 }
 
 getFlag()
