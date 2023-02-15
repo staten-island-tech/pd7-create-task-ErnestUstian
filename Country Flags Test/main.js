@@ -8,16 +8,14 @@ async function getFlag() {
   console.log(flags[index])
 }
 
-function display{
+function display(flags) {
   DOM.body.innerHTML = "";
-  food.forEach((flags) =>
+ flags.forEach((flags) =>
     DOM.insertAdjacentHTML(
       "beforeend",
       `
     <div class="card">
-        <h1>${flags.name}</h1>
-        <h2>${flags.status}</h2>
-        <img src="${flags.image}" alt="image of ${flag.name}">
+        <img src="${flags.flag}" alt="image of ${flag.flag}">
     </div>
     `
     )
