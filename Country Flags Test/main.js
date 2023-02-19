@@ -30,3 +30,19 @@ function display(flag) {
 }
 
 getFlag();
+
+DOM.Submit.addEventListener("submit", function checkAnswer() {
+  const inputText = DOM.InputBox.value;
+  console.log(inputText);
+  // (inputText, designatedObject) => {
+  //   for (const property in designatedObject) {
+  //     if (
+  //       designatedObject.hasOwnProperty(property) &&
+  //       designatedObject[property].toLowerCase() === inputString.toLowerCase()
+  //     ) {
+  //       return true;
+  //     }
+  //   }
+  //   return false;
+  // };
+});
