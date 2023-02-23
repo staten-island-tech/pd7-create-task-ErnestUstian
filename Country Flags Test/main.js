@@ -17,9 +17,16 @@ async function getCountries() {
 }
 
 function getRandCont(filteredCountries) {
+  let selectedCont = [];
   //Get random flag from filteredCountries
   let index = Math.floor(Math.random() * filteredCountries.length);
-  const chosenCont = filteredCountries[index];
+  let chosenCont = filteredCountries[index];
+  if (!(chosenCont in selectedCont)) {
+    selectedCont.push(chosenCont);
+  } else {
+    index = Math.floor(Math.random() * filteredCountries.length);
+    chosenCont = filteredCountries[index];
+  }
   chosenCountry = chosenCont;
   console.log(chosenCont);
   console.log(chosenCont.name.common);
@@ -46,26 +53,22 @@ getCountries();
 
 let arrayCorrect = [];
 
-// function displayArray(arrayCorrect) {
-//   let myList = document.createElement("ul");
-//   for (let i = 0; i < arrayCorrect.length; i++) {
-//     let listItem = document.createElement("li");
-//     listItem.textContent = arrayCorrect[i];
-//     myList.appendChild(listItem);
-//   }
-//   DOM.CountryList.appendChild(myList);
-// }
-
 function displayCountries(arrayCorrect) {
-  DOM.ListItem.innerHTML = "";
-  arrayCorrect.forEach((flag) =>
-    DOM.Menupage.insertAdjacentHTML(
-      "beforeend",
-      `
-      <li class="listItem">${flag}</li>
-      `
-    )
-  );
+  DOM.CountryList.innerHTML += `<li>${
+    arrayCorrect[arrayCorrect.length - 1]
+  }</li>`;
+}
+
+function deleteCountries(arrayCorrect, correctCountry) {
+  DOM.CountryList.innerHTML = '<ul id="listCountries"></ul>';
+  arrayCorrect.length = 0;
+  let wrongString =
+    "LOSER. Incorrect guess. The correct country was " +
+    correctCountry +
+    ". TRY AGAIN";
+  window.alert(wrongString);
+  console.log(arrayCorrect);
+  getRandCont(filteredCountries);
 }
 
 DOM.Button.addEventListener("click", function () {
@@ -77,6 +80,8 @@ DOM.Button.addEventListener("click", function () {
     arrayCorrect.push(chosenCountry.flag);
     getRandCont(filteredCountries);
     displayCountries(arrayCorrect);
+  } else {
+    deleteCountries(arrayCorrect, chosenCountry.name.common);
   }
   console.log(arrayCorrect);
 });

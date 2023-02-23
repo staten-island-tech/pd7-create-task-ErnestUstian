@@ -3,7 +3,7 @@ const DOM = {
   Button: document.getElementById("button"),
   CorrectCountries: document.getElementById("correctCountries"),
   CountryList: document.getElementById("countryList"),
-  ListItem: document.getElementById("listItem"),
+  ListCountries: document.getElementById("listCountries"),
   Menupage: document.getElementById("Menupage"),
 };
 
