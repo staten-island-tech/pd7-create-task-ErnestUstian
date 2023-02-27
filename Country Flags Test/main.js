@@ -76,7 +76,7 @@ DOM.Button.addEventListener("click", function () {
   DOM.InputBox.value = "";
   console.log(inputValue);
   console.log(chosenCountry.name.common);
-  if (inputValue.toLowerCase() == chosenCountry.name.common.toLowerCase()) {
+  if (inputValue.toLowerCase().trim() == chosenCountry.name.common.toLowerCase()) {
     arrayCorrect.push(chosenCountry.flag);
     getRandCont(filteredCountries);
     displayCountries(arrayCorrect);
