@@ -63,9 +63,7 @@ function deleteCountries(arrayCorrect, correctCountry) {
   DOM.CountryList.innerHTML = '<ul id="listCountries"></ul>';
   arrayCorrect.length = 0;
   let wrongString =
-    "LOSER. Incorrect guess. The correct country was " +
-    correctCountry +
-    ". TRY AGAIN";
+    "Incorrect. The correct country was " + correctCountry + ". TRY AGAIN";
   window.alert(wrongString);
   console.log(arrayCorrect);
   getRandCont(filteredCountries);
@@ -76,7 +74,9 @@ DOM.Button.addEventListener("click", function () {
   DOM.InputBox.value = "";
   console.log(inputValue);
   console.log(chosenCountry.name.common);
-  if (inputValue.toLowerCase().trim() == chosenCountry.name.common.toLowerCase()) {
+  if (
+    inputValue.toLowerCase().trim() == chosenCountry.name.common.toLowerCase()
+  ) {
     arrayCorrect.push(chosenCountry.flag);
     getRandCont(filteredCountries);
     displayCountries(arrayCorrect);
