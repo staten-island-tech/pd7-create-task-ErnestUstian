@@ -35,7 +35,6 @@ function shuffle(array) {
 
 //Display Flag
 function display(flag) {
-  console.log(flag.name.common);
   DOM.Menupage.innerHTML = "";
   DOM.Menupage.insertAdjacentHTML(
     "beforeend",
