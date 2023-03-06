@@ -10,14 +10,7 @@ async function getCountries() {
   //Filter independent countries
   let filteredCountries = flags.filter(
     (country) =>
-      country.independent === true &&
-      country.independent !== undefined &&
-      (country.name.common == "Georgia" ||
-        country.name.common == "Armenia" ||
-        country.name.common == "Spain" ||
-        country.name.common == "Italy" ||
-        country.name.common == "France" ||
-        country.name.common == "Germany")
+      country.independent === true && country.independent !== undefined
   );
   shuffledCountries = shuffle(filteredCountries);
   //Display country out of shuffledCountries
