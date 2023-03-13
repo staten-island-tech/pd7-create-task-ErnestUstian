@@ -3,6 +3,9 @@ import { DOM } from "./DOM";
 let chosenCountry;
 let shuffledCountries = [];
 
+getCountries();
+
+//Starting function for getting countries
 async function getCountries() {
   let response = await fetch("https://restcountries.com/v3.1/all");
   let flags = await response.json();
@@ -18,6 +21,7 @@ async function getCountries() {
   display(chosenCountry);
 }
 
+//Shuffle list function
 function shuffle(array) {
   let currentIndex = array.length,
     randomIndex;
@@ -48,38 +52,46 @@ function display(flag) {
   );
 }
 
-getCountries();
-
-function displayCountries(chosenCountry) {
-  DOM.CountryList.innerHTML += `<li>${chosenCountry.flag}</li>`;
-}
-
-function deleteCountries(correctCountry) {
-  DOM.CountryList.innerHTML = '<ul id="listCountries"></ul>';
-  shuffledCountries.length = 0;
-  let wrongString =
-    "Incorrect. The correct country was " + correctCountry + ". TRY AGAIN";
-  window.alert(wrongString);
-  //Add new way to display countries
-  getCountries();
-}
-
+//Function on button press
 DOM.Button.addEventListener("click", function () {
-  const inputValue = DOM.InputBox.value;
+  inputChecker(DOM.InputBox.value);
   DOM.InputBox.value = "";
-  if (
-    inputValue.toLowerCase().trim() == chosenCountry.name.common.toLowerCase()
-  ) {
+});
+
+//Function on Enter key
+DOM.InputBox.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    inputChecker(DOM.InputBox.value);
+    DOM.InputBox.value = "";
+  }
+});
+
+//Answer Checker
+function inputChecker(inputCountry) {
+  let correctName = chosenCountry.name.common;
+  //Correct country name
+  if (inputCountry.toLowerCase() == correctName.toLowerCase()) {
+    //Another country left in the list
     if (shuffledCountries.length != 0) {
-      displayCountries(chosenCountry);
+      DOM.CountryList.innerHTML += `<li>${chosenCountry.flag}</li>`;
       chosenCountry = shuffledCountries.pop();
       display(chosenCountry);
-    } else {
+    }
+    //No country left in the list
+    else {
       window.alert("You got all the countries correctly! Good Job!");
       DOM.CountryList.innerHTML = '<ul id="listCountries"></ul>';
       getCountries();
     }
-  } else {
-    deleteCountries(chosenCountry.name.common);
   }
-});
+  //Wrong country name
+  else {
+    DOM.CountryList.innerHTML = '<ul id="listCountries"></ul>';
+    shuffledCountries.length = 0;
+    let wrongString =
+      "Incorrect. The correct country was " + correctName + ". TRY AGAIN";
+    window.alert(wrongString);
+    //Add new way to display countries
+    getCountries();
+  }
+}
